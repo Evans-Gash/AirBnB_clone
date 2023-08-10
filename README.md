@@ -1,24 +1,133 @@
-0x00. AirBnB clone - The console
-Has 5 Mandatory Tasks and 7 Advanced Tasks
-Background Context
-Welcome to the AirBnB clone project!
-Before starting, please read the AirBnB concept page.
+AirBnB Clone - The Console
+The console is the first segment of the AirBnB project at ALX School that will collectively
+cover fundamental concepts of higher level programming. The goal of AirBnB project is to eventuall
+y deploy our server a simple copy of the AirBnB Website(HBnB). A command interpreter is created in
+this segment to manage objects for the AirBnB(HBnB) website.
 
-First step: Write a command interpreter to manage your AirBnB objects.
-This is the first step towards building your first full web application: the AirBnB clone. This first step is very important because you will use what you build during this project with all other following projects: HTML/CSS templating, database storage, API, front-end integration…
-
-Each task is linked and will help you to:
-
-put in place a parent class (called BaseModel) to take care of the initialization, serialization and deserialization of your future instances
-create a simple flow of serialization/deserialization: Instance <-> Dictionary <-> JSON string <-> file
-create all classes used for AirBnB (User, State, City, Place…) that inherit from BaseModel
-create the first abstracted storage engine of the project: File storage.
-create all unittests to validate all our classes and storage engine
-What’s a command interpreter?
-Do you remember the Shell? It’s exactly the same but limited to a specific use-case. In our case, we want to be able to manage the objects of our project:
-
+Functionalities of this command interpreter:
 Create a new object (ex: a new User or a new Place)
-Retrieve an object from a file, a database etc…
-Do operations on objects (count, compute stats, etc…)
+Retrieve an object from a file, a database etc...
+Do operations on objects (count, compute stats, etc...)
 Update attributes of an object
 Destroy an object
+Table of Content
+Environment
+Installation
+File Descriptions
+Usage
+Examples of use
+Bugs
+Authors
+License
+Environment
+This project is interpreted/tested on Ubuntu 14.04 LTS using python3 (version 3.4.3)
+
+Installation
+Clone this repository: git clone "https://github.com/Fraol123/AirBnB_clone"
+Access AirBnb directory: cd AirBnB_clone
+Run hbnb(interactively): ./console and enter command
+Run hbnb(non-interactively): echo "<command>" | ./console.py## AirBnB clone - The console
+File Descriptions
+console.py - the console contains the entry point of the command interpreter. List of commands this console current supports:
+
+quit - exits console
+create - Creates a new instance ofBaseModel, saves it (to the JSON file) and prints the id
+destroy - Deletes an instance based on the class name and id (save the change into the JSON fi
+le).
+show - Prints the string representation of an instance based on the class name and id.
+all - Prints all string representation of all instances based or not on the class name.
+update - Updates an instance based on the class name and id by adding or updating attribute (s
+ave the change into the JSON file).
+models/ directory contains classes used for this project:
+base_model.py - The BaseModel class from which future classes will be der
+ived
+
+def __init__(self, *args, **kwargs) - Initialization of the base model
+def __str__(self) - String representation of the BaseModel class
+def save(self) - Updates the attribute updated_at with the current datetime
+def to_dict(self) - returns a dictionary containing all keys/values of the instance
+Classes inherited from Base Model:
+
+amenity.py
+city.py
+place.py
+review.py
+state.py
+user.py
+/tests directory contains all unit test cases for this project:
+/test_models/test_base_model.py - Contains the TestBaseModel and TestBaseModelDocs classes TestBaseModelDocs class:
+
+def setUpClass(cls)- Set up for the doc tests
+def test_bm_module_docstring(self) - Test for the base_model.py module docstring
+def test_bm_class_docstring(self) - Test for the BaseModel class docstring
+def test_bm_func_docstrings(self) - Test for the presence of docstrings in BaseModel methods
+TestBaseModel class:
+
+def test_is_base_model(self) - Test that the instatiation of a BaseModel works
+def test_created_at_instantiation(self) - Test created_at is a pub. instance attribute of type datetime
+def test_updated_at_instantiation(self) - Test updated_at is a pub. instance attribute of type datetime
+def test_diff_datetime_objs(self) - Test That two BaseModel instances have different datetime objects
+/test_models/test_amenity.py - Contains the TestAmenityDocs class:
+
+def setUpClass(cls) - Set up for the doc tests
+def test_amenity_module_docstring(self) - Test for the amenity.py module docstring
+def test_amenity_class_docstring(self) - Test for the Amenity class docstring
+/test_models/test_city.py - Contains the TestCityDocs class:
+
+def test_pep8_conformance_test_city(self) - Test that tests/test_models/test_city.py conforms to PEP8
+def test_city_module_docstring(self) - Test for the city.py module docstring
+def test_city_class_docstring(self) - Test for the City class docstring
+/test_models/test_file_storage.py - Contains the TestFileStorageDocs class:
+
+def setUpClass(cls) - Set up for the doc tests
+def test_file_storage_module_docstring(self) - Test for the file_storage.py module docstring
+/test_models/test_place.py - Contains the TestPlaceDoc class:
+
+def setUpClass(cls) - Set up for the doc tests
+def test_place_module_docstring(self) - Test for the place.py module docstring
+def test_place_class_docstring(self) - Test for the Place class docstring
+/test_models/test_review.py - Contains the TestReviewDocs class:
+
+def setUpClass(cls) - Set up for the doc tests
+def test_review_module_docstring(self) - Test for the review.py module docstring
+def test_review_class_docstring(self) - Test for the Review class docstring
+/test_models/state.py - Contains the TestStateDocs class:
+
+def setUpClass(cls) - Set up for the doc tests
+def test_state_module_docstring(self) - Test for the state.py module docstring
+def test_state_class_docstring(self) - Test for the State class docstring
+/test_models/user.py - Contains the TestUserDocs class:
+
+def setUpClass(cls) - Set up for the doc tests
+def test_user_module_docstring(self) - Test for the user.py module docstring
+def test_user_class_docstring(self) - Test for the User class docstring
+Examples of use
+vagrantAirBnB_clone$./console.py
+(hbnb) help
+
+Documented commands (type help <topic>):
+========================================
+  all  create  destroy  help  quit  show  update
+
+(hbnb) all MyModel
+** class doesn't exist **
+(hbnb) create BaseModel
+7da56403-cc45-4f1c-ad32-bfafeb2bb050
+(hbnb) all BaseModel
+[[BaseModel] (7da56403-cc45-4f1c-ad32-bfafeb2bb050) {'updated_at': datetime.datetime(2017, 9, 28, 9, 50, 46, 772167), 'id': '7da56403-cc45-4f1c-ad32-bfafeb2bb050', 'create\
+d_at': datetime.datetime(2017, 9, 28, 9, 50, 46, 772123)}]
+(hbnb) show BaseModel 7da56403-cc45-4f1c-ad32-bfafeb2bb050
+[BaseModel] (7da56403-cc45-4f1c-ad32-bfafeb2bb050) {'updated_at': datetime.datetime(2017, 9, 28, 9, 50, 46, 772167), 'id': '7da56403-cc45-4f1c-ad32-bfafeb2bb050', 'created\
+_at': datetime.datetime(2017, 9, 28, 9, 50, 46, 772123)}
+(hbnb) destroy BaseModel 7da56403-cc45-4f1c-ad32-bfafeb2bb050
+(hbnb) show BaseModel 7da56403-cc45-4f1c-ad32-bfafeb2bb050
+** no instance found **
+(hbnb) quit
+Bugs
+No known bugs at this time.
+
+Authors
+Evans Gash Mugambi and MOHAMED KARIM YACOUBI
+
+License
+Public Domain. No copy write protection.
