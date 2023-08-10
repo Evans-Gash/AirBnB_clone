@@ -1,4 +1,5 @@
 0x00. AirBnB clone - The console
+Has 5 Mandatory Tasks and 7 Advanced Tasks
 Background Context
 Welcome to the AirBnB clone project!
 Before starting, please read the AirBnB concept page.
